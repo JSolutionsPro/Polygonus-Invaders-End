@@ -36,7 +36,6 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.instance.PlayStartSound();
         UIPanel.gameObject.SetActive(false);
-        //PlayerController.instance.canShoot = true;
         playerController.canShoot = true; 
         ActivateObjects();
     }

@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    /// <summary>
+    ///  On Fire Method is called when the player press the space bar or the left mouse button
+    /// Have some interesting features like the triple shot using Quaternion.Euler and the Object Pooling for optimize the performance
+    /// </summary>
     private void OnFire()
     {
         if (canShoot)
@@ -95,7 +99,10 @@ public class PlayerController : MonoBehaviour
     }
 }
     
-    
+    /// <summary>
+    /// I use this Trigger to detect the collision with the enemies and the power ups
+    /// 1. SHIELD Power Up: If the player has the shield active, the enemy will be destroyed, have a duration of 3 seconds for the corutine
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -146,6 +153,9 @@ public class PlayerController : MonoBehaviour
         shield.SetActive(false);
     }
 
+    /// <summary>
+    /// Activates the shield power-up, providing temporary invulnerability.
+    /// </summary>
     public void enableShield()
     {
         {
@@ -156,6 +166,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Activates the triple shot power-up for a limited duration.
+    /// </summary>
     public void enableTripleShot()
     {
         if (isTripleShotActive)

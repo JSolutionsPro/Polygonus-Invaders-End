@@ -30,6 +30,10 @@ public class SpawManager : MonoBehaviour
         StartCoroutine(SpawnPowerUp());
         StartCoroutine(coinSpawner());
     }
+    
+    /// <summary>
+    /// Spawns enemies with a specified spawn rate, and increases the spawn rate over time.
+    /// </summary>
     private IEnumerator spawnEnemy()
     {
         while (true)
@@ -49,6 +53,10 @@ public class SpawManager : MonoBehaviour
             }
         }
     }
+    
+    /// <summary>
+    /// Spawns power-ups with a specified spawn rate, and increases the spawn rate over time.
+    /// </summary>
     IEnumerator SpawnPowerUp()
     {
         while (true)
@@ -67,6 +75,9 @@ public class SpawManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Spawns coins with a specified spawn rate, and increases the spawn rate over time.
+    /// </summary>
     IEnumerator coinSpawner()
     {
         while (true)
