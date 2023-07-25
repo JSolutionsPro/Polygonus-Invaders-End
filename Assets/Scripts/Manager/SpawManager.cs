@@ -9,17 +9,20 @@ public class SpawManager : MonoBehaviour
 {
     
     private float initialSpawnRate = 2f;
-    private float spawnRateIncrease = 0.5f;
+    private float spawnRateIncrease = 0.1f;
     public float spawnRateTimer = 0f;
     
     public GameObject playerObj;
     public GameObject coinPrefab;
     public GameObject enemyPrefab;
+    public GameObject bossPrefab;
+    private bool isBossSpawned = false;
     public Transform playerTransform;
     public float spawnRate = 10f;
-    public float minY = 5.4f;
-    public float minX = -9.5f;
-    public float maxX = 9.5f;
+    public float minY = -15f;
+    public float maxY = 16f;//--------------------------------------------------
+    public float minX = -15f;
+    public float maxX = 16f;
 
     [SerializeField] private GameObject[] powerUps;
     private GameManager gameManager;
@@ -30,7 +33,16 @@ public class SpawManager : MonoBehaviour
         StartCoroutine(SpawnPowerUp());
         StartCoroutine(coinSpawner());
     }
-    
+
+    private void Update()
+    {
+        if (!isBossSpawned && GameManager.instance.score >= 50)
+        {
+            StartCoroutine(spawnBoss());
+            isBossSpawned = true;
+        }
+    }
+
     /// <summary>
     /// Spawns enemies with a specified spawn rate, and increases the spawn rate over time.
     /// </summary>
@@ -40,7 +52,8 @@ public class SpawManager : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
             float randomX = Random.Range(minX, maxX);
-            Vector3 randomPosition = new Vector3(randomX, minY, 0);
+            float randomY = Random.Range(minY, maxY);
+            Vector3 randomPosition = new Vector3(randomX, randomY, 0);
             GameObject newEnemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
             newEnemy.GetComponent<AIDestinationSetter>().target = playerTransform;
 
@@ -63,10 +76,10 @@ public class SpawManager : MonoBehaviour
         {
             yield return new WaitForSeconds(5f);
             int randomPowerUp = Random.Range(0, 2);
-            Instantiate(powerUps[randomPowerUp], new Vector3(Random.Range(-7f, 7f), 4, 0), Quaternion.identity);
+            Instantiate(powerUps[randomPowerUp], new Vector3(Random.Range(-16f, 16f), 16f, 0), Quaternion.identity);
             
             spawnRateTimer += spawnRate;
-            if (spawnRateTimer >= 7f)
+            if (spawnRateTimer >= 5f)
             {
                 spawnRate -= spawnRateIncrease;
                 spawnRate = Mathf.Max(spawnRate, 0.3f);
@@ -83,7 +96,7 @@ public class SpawManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            Instantiate(coinPrefab, new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(Random.Range(-16f, 16f), Random.Range(-16f, 16f), 0), Quaternion.identity);
             
             spawnRateTimer += spawnRate;
             if (spawnRateTimer >= 10f)
@@ -93,6 +106,14 @@ public class SpawManager : MonoBehaviour
                 spawnRateTimer = 0f;
             }
         }
+    }
+    
+    IEnumerator spawnBoss ()
+    {
+        yield return new WaitForSeconds(2f);
+        StopAllCoroutines();
+        GameObject newBoss = Instantiate(bossPrefab, new Vector3(0, 16f, 0), Quaternion.identity);
+        newBoss.GetComponent<AIDestinationSetter>().target = playerTransform;
     }
     
 }

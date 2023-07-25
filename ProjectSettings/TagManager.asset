@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - RedBoss
+  - BossBullet
+  - miniBoss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BackGround
   - Water
   - UI
   - 
@@ -38,8 +41,11 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - MiniMapa
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 35382761
     locked: 0

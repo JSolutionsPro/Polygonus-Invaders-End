@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour
     private float movementY;
     
         
-    private float minX = -8.8f; 
-    private float maxX = 8.8f;
-    private float minY = -4.90f;
-    private float maxY = 4.90f;  
+    private float minX = -16f; 
+    private float maxX = 16.8f;
+    private float minY = -16f;
+    private float maxY = 16f;  
     
     public float speed;
     public int rotationSpeed;

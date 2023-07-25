@@ -8,8 +8,8 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed;
-    public float destroyY = 5f;
-    public float destroyX = 9f;
+    public float destroyY = 16f;
+    public float destroyX = 16f;
 
     private void Start()
     {

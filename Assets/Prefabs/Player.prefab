@@ -148,9 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0523492118e5b654181aafa18428a4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 2810955283723174680, guid: 0202260df696db8439d0a8d0ff0c8d82, type: 3}
+  canShoot: 0
+  isInmune: 0
   speed: 2
-  rotationSpeed: 4
-  maxSpeed: 5
+  rotationSpeed: 3
+  maxSpeed: 4
   shield: {fileID: 6456222804255833216, guid: 96e9beac02521704eae4e7bfd0b5e5ba, type: 3}
   isShieldActive: 0
   isTripleShotActive: 0
