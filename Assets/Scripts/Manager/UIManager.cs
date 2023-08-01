@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public TextMeshProUGUI scoreText;
     public Transform UIPanel;
+    public Transform winPanel;
     public GameObject[] gameObjectsToActivate;
     private PlayerController playerController;
 
@@ -25,7 +26,12 @@ public class UIManager : MonoBehaviour
         
         playerController = FindObjectOfType<PlayerController>();
     }
-    
+
+    private void Start()
+    {
+        winPanel.gameObject.SetActive(false);
+    }
+
 
     public void updateScore(int score)
     {
@@ -38,6 +44,17 @@ public class UIManager : MonoBehaviour
         UIPanel.gameObject.SetActive(false);
         playerController.canShoot = true; 
         ActivateObjects();
+    }
+
+    public void Restart()
+    {
+        AudioManager.instance.PlayStartSound();
+        winPanel.gameObject.SetActive(false);
+        UIPanel.gameObject.SetActive(true);
+        SceneManager.LoadScene(0);
+        //winPanel.gameObject.SetActive(true);
+        //playerController.canShoot = false;
+        //SceneManager.LoadScene(0);
     }
     
     public void ActivateObjects ()

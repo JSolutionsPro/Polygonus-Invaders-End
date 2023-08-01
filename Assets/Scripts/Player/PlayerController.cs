@@ -135,6 +135,32 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Game Over");
                 
             }
+        }// ---- Colision co la bala del Boss ---- ///
+        else if (collision.gameObject.CompareTag("BossBullet"))
+        {
+            if (isShieldActive)
+            {
+                AudioManager.instance.PlayExplosionSound();
+                Instantiate(explosionPrefab, collision.transform.position, Quaternion.identity);
+                collision.gameObject.SetActive(false);
+            }
+            else if (!isInmune)
+            {
+                AudioManager.instance.PlayExplosionSound();
+                gameObject.SetActive(false);
+                GameManager.instance.gameOver();
+                SceneManager.LoadScene("GameOver");
+                Debug.Log("Game Over");
+            }
+        }
+        // ---- Colision con la el boss ---- ///
+        else if (collision.gameObject.CompareTag("miniBoss"))
+        {
+            AudioManager.instance.PlayExplosionSound();
+            gameObject.SetActive(false);
+            GameManager.instance.gameOver();
+            SceneManager.LoadScene("GameOver");
+            Debug.Log("Game Over");
         }
     }
     

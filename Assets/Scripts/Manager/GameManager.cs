@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool isGameOver = false;
+    public bool gameWin = false;
     public int score = 0;
     public GameObject[] gameObjectsToDisable;
     
@@ -37,6 +38,23 @@ public class GameManager : MonoBehaviour
         UIManager.instance.updateScore(scoreGive);
     }
     
+    public void Win()
+    {
+        gameWin = true;
+        DisableObjects();
+        UIManager.instance.winPanel.gameObject.SetActive(true);
+        score = 0;
+        //SceneManager.LoadScene(2); 
+        //Destroy(UIManager.instance.gameObject);
+    }
+
+    public void BossDestroyed()
+    {
+        if (!gameWin)
+        {
+            Win();
+        }
+    }
    public void gameOver()
     {
         isGameOver = true;

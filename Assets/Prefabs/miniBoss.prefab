@@ -400,7 +400,7 @@ MonoBehaviour:
   healthBar: {fileID: 2019569531128628754}
   explosionPrefab: {fileID: 2810955283723174680, guid: 0202260df696db8439d0a8d0ff0c8d82, type: 3}
   miniExplosion: {fileID: 3062442488551908092, guid: f554d82c1f663804f9d3258cae21a859, type: 3}
-  maxHealth: 30
+  maxHealth: 1
 --- !u!114 &2019569531757563273
 MonoBehaviour:
   m_ObjectHideFlags: 0

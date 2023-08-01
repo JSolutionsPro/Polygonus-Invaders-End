@@ -79,6 +79,7 @@ public class Boss : MonoBehaviour
             AudioManager.instance.PlayExplosionSound();
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
+            GameManager.instance.BossDestroyed();
         }
     }
 
